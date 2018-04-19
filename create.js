@@ -122,6 +122,10 @@ console.log(SubType.superValue); // true
 console.log(SubType.getValue()); // true
 
 // ES6中的继承如何实现的？
+// ES5 的继承，实质是先创造子类的实例对象this，
+// 然后再将父类的方法添加到this上面（Parent.apply(this)）。
+// ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），
+// 然后再用子类的构造函数修改this。
 class Component{
     constructor(componentName){
         // console.log(this); // Input {}
@@ -150,10 +154,6 @@ class Input extends Component{
         console.log(super.getName); // [Function: getName]
     }
 }
-// ES5 的继承，实质是先创造子类的实例对象this，
-// 然后再将父类的方法添加到this上面（Parent.apply(this)）。
-// ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），
-// 然后再用子类的构造函数修改this。
 
 const input = new Input('input', 'inputModel');
 input.getName(); // componentName: input
