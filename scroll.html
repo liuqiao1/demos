@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id='testInput' />
+    <button onclick="add()">add</button>    
+    <button onclick="remove()">remove</button>
+    <div onbeforeunload="return myFunction()">Hello</div>
+    <a href='http://woater.intra.didichuxing.com/dnotebook/folders?username=woater_test'>test</a>
+    <a href="https://zhuanlan.zhihu.com/p/25903132">kkk</a>
+    <a href="https://www.zhihu.com/people/xiao-wan-zi-86-81/posts">xiaowanzi</a>
+    <p>知乎退出登陆后浏览器的cookie就被清掉了吗？
+        Cookie: _zap=3f19f429-b71f-4519-aae4-0d9604a591eb; d_c0="AFBrTRxDFA2PTl4E9vdcqr8Zu8SgmnQVCw0=|1517478069"
+    </p>
+    <form action="https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch" method="POST">
+      <button type="submit">test</button>
+    </form>
+    <script>
+    var input = document.getElementById('testInput');
+    add();
+    function handler(e){
+       if(e.keyCode === 13) {
+           alert(13);
+       } 
+    }
+    function add() {
+        input.addEventListener('keydown', handler, false);
+    }
+    function remove(){
+        input.removeEventListener('keydown', handler, false);
+    }
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
+      
+        // 兼容IE8和Firefox 4之前的版本
+        if (e) {
+          e.returnValue = '关闭提示';
+        }
+      
+        // Chrome, Safari, Firefox 4+, Opera 12+ , IE 9+
+        return '关闭提示';
+      };
+    function myFunction() {
+        return "我在这写点东西...";
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #cell {
+        height: 100px;
+        width: 200px;
+        background: blue;
+    
+        }
+        textarea {
+            margin: 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id='cell'>
+        <textarea id='text'>editor</textarea> 
+    <div>
+    <script>
+        let cell = document.getElementById("cell");
+        console.log(cell);
+        let text = document.getElementByTId("text");
+        text.addEventListener("keydown", e => {
+        if (e.ctrlKey) {
+            console.log("ok");
+        }
+        });
+
+    </script>
+</body>
+</html>

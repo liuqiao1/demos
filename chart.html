@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script src="./echarts.common.min.js"></script>
+    <script type="text/javascript">
+        var sizeValue = '57%';
+        var symbolSize = 2.5;
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            grid: [
+                {right: sizeValue, bottom: sizeValue},
+                {left: sizeValue, bottom: sizeValue},
+                {right: sizeValue, top: sizeValue},
+                {left: sizeValue, top: sizeValue}
+            ],
+            dataset: {
+                source: [
+                    ['id', 'age', 'gender', 'score'],
+                    [1, 10, 'girl', 100],
+                    [1, 10, 'girl', 100],
+                    [2, 10, 'boy', 90],
+                    [3, 20, 'girl', 60],
+                    [4, 20, 'boy', 90],
+                    [5, 30, 'boy', 80],                    
+                ]
+            },
+            xAxis: [
+                // type: 'category',
+                // data: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Walnut Brownie']
+                // {type: 'value', gridIndex: 0, name: 'Income', axisLabel: {rotate: 50, interval: 0}},
+                {type: 'category', gridIndex: 1, name: 'age', boundaryGap: false, axisLabel: {rotate: 50, interval: 0}},
+                {type: 'category', gridIndex: 2, name: 'age', axisLabel: {rotate: 50, interval: 0}},
+                {type: 'category', gridIndex: 3, name: 'age', axisLabel: {rotate: 50, interval: 0}}
+            ],
+            yAxis: [
+                {type: 'value', gridIndex: 1, name: 'score'},
+                {type: 'value', gridIndex: 2, name: 'score'},
+                {type: 'value', gridIndex: 3, name: 'score'},
+            ],
+            series: [
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['25%', '25%'],
+                    label: {
+                        formatter: '{b}:({d}%)'
+                    },
+                    encode: {
+                        itemName: 'score',
+                        value: 'score',
+                        tooltip: 'score'
+                    }
+                },
+                {
+                    type: 'scatter',
+                    symbolSize: symbolSize,
+                    xAxisIndex: 0,
+                    yAxisIndex: 0,
+                    encode: {
+                        x: 'age',
+                        y: 'score',
+                        // tooltip: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    type: 'line',
+                    symbolSize: symbolSize,
+                    xAxisIndex: 1,
+                    yAxisIndex: 1,
+                    encode: {
+                        x: 'age',
+                        y: 'score',
+                        // tooltip: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    type: 'bar',
+                    symbolSize: symbolSize,
+                    xAxisIndex: 2,
+                    yAxisIndex: 2,
+                    encode: {
+                        x: 'age',
+                        y: 'score',
+                        // tooltip: [0, 1, 2, 3, 4]
+                    }
+                }
+                // {
+                //     type: 'bar',
+                //     encode: {
+                //       x: 'age',
+                //       y: 'id',
+                //     }
+                // },
+                // {type: 'bar'},
+                // {type: 'bar'},
+                // {
+                //     type: 'bar',
+                //     name: '2015',
+                //     data: [89.3, 92.1, 94.4, 85.4]
+                // },
+                // {
+                //     type: 'bar',
+                //     name: '2016',
+                //     data: [95.8, 89.4, 91.2, 76.9]
+                // },
+                // {
+                //     type: 'bar',
+                //     name: '2017',
+                //     data: [97.7, 83.1, 92.5, 78.1]
+                // }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
