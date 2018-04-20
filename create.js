@@ -2,7 +2,7 @@
  * Object.create()
  * js 继承方式
  * instanceOf isPrototypeOf
- * ES6 class  继承
+ * ES6 class  继承的实现
  */
 
 function Shape() {
