@@ -93,7 +93,7 @@ const cat = new Cat('kitty');
 console.log(cat.eat()); // eat... 这样每个实例都有了自己的eat方法，没有达到复用目的
 
 // 因此出现了组合继承，结合原型链继承和构造函数继承
-// Cat.prototype = new Animal();写到这里没作用啦，因为Cat已经new出来了
+// Cat.prototype = new Animal();写到这里没作用啦，因为cat已经new出来了
 console.log(cat.say());
 
 // isinstanceof 和 isPrototypeOf 有什么不一样

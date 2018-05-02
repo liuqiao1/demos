@@ -1,0 +1,99 @@
+/**
+ * 防抖动 与 节流阀
+ */
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+     <style>
+     .containner {
+         width: 100%;
+         height: 300px;
+         overflow: scroll;
+     }
+     .content {
+         height: 300px;
+         width: 100%;
+         border: 1px solid black;
+     }
+     </style>
+ </head>
+ <body>
+     <div class="containner">
+         <div class="content">1</div>
+         <div class="content">2</div>
+         <div class="content">3</div>         
+     </div>
+     <button class="testJl">test</button>
+     <script>
+       const container = document.querySelector('.containner');
+       const btn = document.querySelector('.testJl');
+       var throttle = function(func,delay){
+            var timer = null;
+            var startTime = Date.parse(new Date());
+            var num = Math.random();
+            // 以上三句代码只会被执行一次 每次触发事件执行的是return回去的函数
+            return function(){
+                console.log('---start', startTime);
+                console.log('---num', num);
+                var curTime = Date.parse(new Date());
+                var remaining = delay-(curTime-startTime);
+                var context = this;
+                var args = arguments;
+
+                clearTimeout(timer);
+                if(remaining<=0){
+                    func.apply(context,args);
+                    startTime = Date.parse(new Date());
+                }else{
+                    timer = setTimeout(func,remaining);
+                }
+            }
+        }
+       // container.addEventListener('scroll', debounce);
+       container.addEventListener('scroll', debounce(handler, 2000));
+       btn.addEventListener('click', throttle(handler, 2000));
+       
+       let timmer = null;
+       function handler() {
+        console.log('scroll...');
+       }
+       function debounce(handler, wait) {
+           let timmer = null;
+           return function() {
+               clearTimeout(timmer);
+               // timmer = null;
+               timmer = setTimeout(() => {
+                   handler();
+               }, wait);
+           }
+       }
+        // function throttle(handler, wait) {
+        //     let timmer = null;
+        //     let startTime = Date.parse(new Date());
+        //     return function(){
+        //         const now = Date.parse(new Date());
+        //         // console.log('-----now', now);
+        //         // console.log('-----startTime', startTime);
+                
+        //         const remain = wait - (now - startTime);
+        //         // console.log(remain);
+        //         clearTimeout(timmer);
+        //         if (remain > 0){
+        //             timmer = setTimeout(() => {
+        //               handler();
+        //             }, remain);
+        //         }else {
+        //             handler();
+        //             startTime = Date.parse(new Date());
+        //         }
+        //     }
+        // }
+        
+     </script>
+ </body>
+ </html>
